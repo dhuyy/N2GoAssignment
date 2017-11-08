@@ -3,18 +3,14 @@
 
   angular
     .module('user')
-    .controller('UserController', ['$uibModal', '$state', 'ngTableParams', 'UserService', UserController]);
+    .controller('UserController', ['$scope', '$uibModal', '$state', 'ngTableParams', 'UserService', UserController]);
 
-  function UserController($uibModal, $state, ngTableParams, UserService) {
+  function UserController($scope, $uibModal, $state, ngTableParams, UserService) {
     var vm = this;
 
     vm.users = [];
 
-    vm.openModal = openModal;
-    vm.editUser = editUser;
-    vm.deleteUser = deleteUser;
-
-    function openModal(user) {
+    $scope.$on('showUser', function(event, args) {
       $uibModal.open({
         animation: false,
         ariaDescribedBy: 'modal-body',
@@ -22,7 +18,9 @@
         controller: ['$uibModalInstance', function($uibModalInstance) {
           var $ctrl = this;
 
-          $ctrl.user = user;
+          $ctrl.firstName = args.firstName;
+          $ctrl.lastName = args.lastName;
+          $ctrl.dateOfBirth = args.dateOfBirth;
 
           $ctrl.close = function () {
             $uibModalInstance.dismiss('cancel');
@@ -31,19 +29,19 @@
         controllerAs: '$ctrl',
         size: 'md'
       });
-    }
+    });
 
-    function editUser(userId) {
-      $state.go('detail', { id: userId });
-    }
+    $scope.$on('editUser', function(event, args) {
+      $state.go('detail', { id: args });
+    });
 
-    function deleteUser(userId) {
+    $scope.$on('deleteUser', function(event, args) {
       vm.users = vm.users.filter(function(element) {
-        return element.id !== userId;
+        return element.id != args;
       });
 
       _reloadUserTable();
-    }
+    });
 
     function _onInit() {
       UserService.getUsers()

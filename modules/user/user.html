@@ -11,23 +11,14 @@
           <td data-title="'Country'"></td>
           <td data-title="'Actions'"></td>
         </tr>
-        <tr ng-repeat="user in $data">
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.dateOfBirth }}</td>
-          <td>{{ user.country }}</td>
-          <td>
-            <button type="button" class="btn btn-default btn-xs" ng-click="vm.openModal(user)">
-              <i class="fa fa-id-card-o" aria-hidden="true"></i> Show
-            </button>
-            <button type="button" class="btn btn-primary btn-xs" ng-click="vm.editUser(user.id)">
-              <i class="fa fa-pencil" aria-hidden="true"></i> Edit
-            </button>
-            <button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteUser(user.id)">
-              <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-            </button>
-          </td>
+        <tr user-row
+            ng-repeat="user in $data"
+            user-id="{{ user.id }}"
+            first-name="{{ user.firstName }}"
+            last-name="{{ user.lastName }}"
+            email="{{ user.email }}"
+            date-of-birth="{{ user.dateOfBirth }}"
+            country="{{ user.country }}">
         </tr>
       </tbody>
     </table>
@@ -35,9 +26,9 @@
   <script type="text/ng-template" id="showUserModal">
     <div class="modal-body" id="modal-body">
       <h2>
-        {{ $ctrl.user.firstName }}
-        {{ $ctrl.user.lastName }} is
-        {{ $ctrl.user.dateOfBirth | ageFilter }} years old.
+        {{ $ctrl.firstName }}
+        {{ $ctrl.lastName }} is
+        {{ $ctrl.dateOfBirth | ageFilter }} years old.
       </h2>
     </div>
     <div class="modal-footer">
