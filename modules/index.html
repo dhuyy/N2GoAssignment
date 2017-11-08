@@ -4,16 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Newsletter2go fe-test</title>
 
     <!-- Styles -->
-    <link href="" rel="stylesheet">
-
-	<!-- Scripts -->
-	<script src=""></script>
+    <link href="index.css" rel="stylesheet">
+    <link href="user/user.css" rel="stylesheet">
+    <link href="detail/detail.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello, world!</h1>
+
+    <div ui-view></div>
+
+    <!-- Libraries -->
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="app.module.js"></script>
+    <script src="app.constants.js"></script>
+    <script src="app.run.js"></script>
+    <script src="app.route.js"></script>
+
+    <script src="common/common.module.js"></script>
+    <script src="common/userService/user.service.js"></script>
+
+    <script src="user/user.module.js"></script>
+    <script src="user/user.controller.js"></script>
+
+    <script src="detail/detail.module.js"></script>
+    <script src="detail/detail.controller.js"></script>
   </body>
 </html>

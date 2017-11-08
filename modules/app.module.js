@@ -1,12 +1,13 @@
-(function () {
+(function() {
 	'use strict';
 
 	angular.module('app', [
 		'ui.router',
 
-		'user',		
+		'user',
+    'detail',
 		'common',
-		
+
 		'ui.bootstrap'
-	]);	
+	]);
 }());
