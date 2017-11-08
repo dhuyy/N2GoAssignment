@@ -20,6 +20,8 @@
     "angular": "~1.4.8",
     "angular-ui-router": "ui-router#~0.2.15",
     "angular-bootstrap": "~0.14.3",
-    "ng-table": "0.8.3"
+    "ng-table": "0.8.3",
+    "bootstrap-css-only": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
   }
 }

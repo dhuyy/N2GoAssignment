@@ -3,12 +3,33 @@
 
   angular
     .module('user')
-    .controller('UserController', ['ngTableParams', 'UserService', UserController]);
+    .controller('UserController', ['$uibModal', 'ngTableParams', 'UserService', UserController]);
 
-  function UserController(ngTableParams, UserService) {
+  function UserController($uibModal, ngTableParams, UserService) {
     var vm = this;
 
     vm.users = [];
+
+    vm.open = open;
+
+    function open(user) {
+      $uibModal.open({
+        animation: false,
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'showUserModal',
+        controller: ['$uibModalInstance', function($uibModalInstance) {
+          var $ctrl = this;
+
+          $ctrl.user = user;
+
+          $ctrl.close = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+        }],
+        controllerAs: '$ctrl',
+        size: 'md'
+      });
+    }
 
     function _onInit() {
       UserService.getUsers()

@@ -3,12 +3,12 @@
 
 	angular.module('app', [
 		'ui.router',
-		'ngTable',
+    'ngTable',
 
 		'user',
     'detail',
 		'common',
 
-		'ui.bootstrap'
+    'ui.bootstrap'
 	]);
 }());

@@ -15,8 +15,6 @@
   margin: 30px auto 0;
 }
 
-.pagination {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 10px;
+.table-users th {
+  text-align: left;
 }

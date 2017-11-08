@@ -3,7 +3,7 @@
   <div class="table-wrapper table-responsive">
     <table ng-table="vm.tableData" class="table table-hover table-users">
       <tbody>
-        <tr id="line-header" class="hide">
+        <tr class="hide">
           <td data-title="'First Name'"></td>
           <td data-title="'Last Name'"></td>
           <td data-title="'Email'"></td>
@@ -17,9 +17,33 @@
           <td>{{ user.email }}</td>
           <td>{{ user.dateOfBirth }}</td>
           <td>{{ user.country }}</td>
-          <td>Actions</td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ng-click="vm.open(user)">
+              <i class="fa fa-id-card-o" aria-hidden="true"></i> Show
+            </button>
+            <button type="button" class="btn btn-primary btn-xs">
+              <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </button>
+            <button type="button" class="btn btn-danger btn-xs">
+              <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <script type="text/ng-template" id="showUserModal">
+    <div class="modal-body" id="modal-body">
+      <h2>
+        {{ $ctrl.user.firstName }}
+        {{ $ctrl.user.lastName }} is
+        {{ $ctrl.user.dateOfBirth | ageFilter }} years old.
+      </h2>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" ng-click="$ctrl.close()">
+        Close
+      </button>
+    </div>
+  </script>
 </div>
