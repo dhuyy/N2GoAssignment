@@ -3,6 +3,7 @@
 
 	angular.module('app', [
 		'ui.router',
+		'ngTable',
 
 		'user',
     'detail',

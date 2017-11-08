@@ -1,3 +1,25 @@
-<div class="container">
-
+<div class="user-container">
+  <div class="title">Newsletter2Go Assignment</div>
+  <div class="table-wrapper table-responsive">
+    <table ng-table="vm.tableData" class="table table-hover table-users">
+      <tbody>
+        <tr id="line-header" class="hide">
+          <td data-title="'First Name'"></td>
+          <td data-title="'Last Name'"></td>
+          <td data-title="'Email'"></td>
+          <td data-title="'Date of Birth'"></td>
+          <td data-title="'Country'"></td>
+          <td data-title="'Actions'"></td>
+        </tr>
+        <tr ng-repeat="user in $data">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.dateOfBirth }}</td>
+          <td>{{ user.country }}</td>
+          <td>Actions</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

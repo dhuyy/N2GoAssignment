@@ -4,3 +4,7 @@ body {
   color: #444444;
   background-color: #FAFAFA;
 }
+
+.hide {
+  display: none;
+}
