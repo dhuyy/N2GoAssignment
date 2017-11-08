@@ -3,16 +3,18 @@
 
   angular
     .module('user')
-    .controller('UserController', ['$uibModal', 'ngTableParams', 'UserService', UserController]);
+    .controller('UserController', ['$uibModal', '$state', 'ngTableParams', 'UserService', UserController]);
 
-  function UserController($uibModal, ngTableParams, UserService) {
+  function UserController($uibModal, $state, ngTableParams, UserService) {
     var vm = this;
 
     vm.users = [];
 
-    vm.open = open;
+    vm.openModal = openModal;
+    vm.editUser = editUser;
+    vm.deleteUser = deleteUser;
 
-    function open(user) {
+    function openModal(user) {
       $uibModal.open({
         animation: false,
         ariaDescribedBy: 'modal-body',
@@ -31,6 +33,18 @@
       });
     }
 
+    function editUser(userId) {
+      $state.go('detail', { id: userId });
+    }
+
+    function deleteUser(userId) {
+      vm.users = vm.users.filter(function(element) {
+        return element.id !== userId;
+      });
+
+      _reloadUserTable();
+    }
+
     function _onInit() {
       UserService.getUsers()
         .then(function(response) {
@@ -47,6 +61,10 @@
     /*
     * ngTable
      */
+    function _reloadUserTable() {
+      vm.tableData.reload();
+    }
+
     function _runUserTable() {
       vm.tableData = new ngTableParams({
         page: 1,
@@ -57,8 +75,13 @@
         getData: function ($defer, params) {
           var offset = (params.page() - 1) * params.count();
           var limit = params.page() * params.count();
+          var chunk = vm.users.slice(offset, limit);
 
-          $defer.resolve(vm.users.slice(offset, limit));
+          $defer.resolve(chunk);
+          params.total(vm.users.length);
+
+          if (!chunk.length && params.total() > 0)
+            params.page(params.page() - 1);
         }
       });
     }

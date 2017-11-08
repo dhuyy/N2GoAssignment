@@ -3,9 +3,11 @@
 
   angular
     .module('detail')
-    .controller('DetailController', DetailController);
+    .controller('DetailController', ['$stateParams', DetailController]);
 
-  function DetailController() {
+  function DetailController($stateParams) {
     var vm = this;
+
+    vm.id = $stateParams.id;
   }
 })();

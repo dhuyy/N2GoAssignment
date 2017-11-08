@@ -18,13 +18,13 @@
           <td>{{ user.dateOfBirth }}</td>
           <td>{{ user.country }}</td>
           <td>
-            <button type="button" class="btn btn-default btn-xs" ng-click="vm.open(user)">
+            <button type="button" class="btn btn-default btn-xs" ng-click="vm.openModal(user)">
               <i class="fa fa-id-card-o" aria-hidden="true"></i> Show
             </button>
-            <button type="button" class="btn btn-primary btn-xs">
+            <button type="button" class="btn btn-primary btn-xs" ng-click="vm.editUser(user.id)">
               <i class="fa fa-pencil" aria-hidden="true"></i> Edit
             </button>
-            <button type="button" class="btn btn-danger btn-xs">
+            <button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteUser(user.id)">
               <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
             </button>
           </td>
