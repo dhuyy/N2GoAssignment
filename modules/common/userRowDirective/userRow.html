@@ -1,5 +1,5 @@
-<tr>
-  <td>
+<tr ng-class="{ 'ignore': !$ctrl.checked }">
+  <td class="ignore">
     <input type="checkbox" ng-selected="$ctrl.checked" ng-click="$ctrl.checkUncheckRow()">
   </td>
   <td>{{ $ctrl.firstName }}</td>
@@ -7,7 +7,7 @@
   <td>{{ $ctrl.email }}</td>
   <td>{{ $ctrl.dateOfBirth }}</td>
   <td>{{ $ctrl.country }}</td>
-  <td>
+  <td class="ignore">
     <button type="button" class="btn btn-default btn-xs" ng-click="$ctrl.showUser()">
       <i class="fa fa-id-card-o" aria-hidden="true"></i> Show
     </button>

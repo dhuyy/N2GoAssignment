@@ -4,6 +4,7 @@
 	angular.module('app', [
 		'ui.router',
     'ngTable',
+		'ngTableToCsv',
 
 		'user',
     'detail',

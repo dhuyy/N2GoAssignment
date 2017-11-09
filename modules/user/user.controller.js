@@ -9,11 +9,25 @@
     var vm = this;
 
     vm.users = [];
+    vm.selectedRowsLength = 0;
 
     vm.deleteMultipleRows = deleteMultipleRows;
+    vm.generateCsv = generateCsv;
+    vm.linkCsv = linkCsv;
 
     function deleteMultipleRows() {
       $scope.$broadcast('deleteSelectedRows');
+    }
+
+    function generateCsv() {
+      vm.csv.generate();
+    }
+
+    function linkCsv() {
+      if (vm.selectedRowsLength == 0)
+        return '';
+
+      return vm.csv.link();
     }
 
     $scope.$on('increaseSelectedRowsLength', function() {

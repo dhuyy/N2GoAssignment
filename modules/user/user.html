@@ -16,22 +16,25 @@
               ng-disabled="vm.selectedRowsLength == 0">
         <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Rows
       </button>
-      <button class="btn btn-default" ng-disabled="vm.selectedRowsLength == 0">
+      <a class="btn btn-default" ng-click="vm.generateCsv()"
+         ng-href="{{ vm.linkCsv() }}" download="n2go_users.csv"
+         ng-disabled="vm.selectedRowsLength == 0">
         <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to CSV
-      </button>
+      </a>
     </div>
   </div>
   <div class="table-wrapper table-responsive">
-    <table ng-table="vm.tableData" class="table table-hover table-users">
+    <table ng-table="vm.tableData" class="table table-hover table-users"
+           export-csv="vm.csv" separator=";" export-csv-ignore="ignore">
       <tbody>
-        <tr class="hide">
-          <td data-title="''"></td>
+        <tr class="ignore hide">
+          <td data-title="''" header-class="'ignore'"></td>
           <td data-title="'First Name'"></td>
           <td data-title="'Last Name'"></td>
           <td data-title="'Email'"></td>
           <td data-title="'Date of Birth'"></td>
           <td data-title="'Country'"></td>
-          <td data-title="'Actions'"></td>
+          <td data-title="'Actions'" header-class="'ignore'"></td>
         </tr>
         <tr user-row
             ng-repeat="user in $data"
@@ -39,7 +42,7 @@
             first-name="{{ user.firstName }}"
             last-name="{{ user.lastName }}"
             email="{{ user.email }}"
-            date-of-birth="{{ user.dateOfBirth }}"
+            date-of-birth="{{ user.dateOfBirth | date:'MM/dd/yyyy' }}"
             country="{{ user.country }}">
         </tr>
       </tbody>
