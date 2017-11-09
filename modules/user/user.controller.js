@@ -9,6 +9,7 @@
     var vm = this;
 
     vm.users = [];
+    vm.selectedRowsLength = 0;
 
     $scope.$on('showUser', function(event, args) {
       $uibModal.open({

@@ -1,5 +1,21 @@
 <div class="user-container">
   <div class="title">Newsletter2Go Assignment</div>
+  <div class="table-menu">
+    <div class="table-menu__selected">
+      <span ng-if="vm.selectedRowsLength == 0">No users selected.</span>
+      <span ng-if="vm.selectedRowsLength != 0">
+        {{ vm.selectedRowsLength }} users selected.
+      </span>
+    </div>
+    <div class="table-menu__buttons">
+      <button class="btn btn-default buttons--margin-right" ng-disabled="vm.selectedRowsLength == 0">
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Rows
+      </button>
+      <button class="btn btn-default" ng-disabled="vm.selectedRowsLength == 0">
+        <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to CSV
+      </button>
+    </div>
+  </div>
   <div class="table-wrapper table-responsive">
     <table ng-table="vm.tableData" class="table table-hover table-users">
       <tbody>

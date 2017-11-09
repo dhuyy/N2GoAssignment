@@ -11,7 +11,7 @@
       replace: true,
       scope: {},
       bindToController: {
-        userId: '=',
+        userId: '@',
         firstName: '@',
         lastName: '@',
         email: '@',
