@@ -21,6 +21,17 @@
       controller: function($scope) {
         var $ctrl = this;
 
+        $ctrl.checked = false;
+
+        $ctrl.checkUncheckRow = function() {
+          $ctrl.checked = !$ctrl.checked;
+
+          if ($ctrl.checked)
+            $scope.$emit('increaseSelectedRowsLength');
+          else
+            $scope.$emit('decreaseSelectedRowsLength');
+        };
+
         $ctrl.showUser = function() {
           $scope.$emit('showUser', {
             firstName: $ctrl.firstName,
@@ -34,6 +45,9 @@
         };
 
         $ctrl.deleteUser = function() {
+          if ($ctrl.checked)
+            $scope.$emit('decreaseSelectedRowsLength');
+
           $scope.$emit('deleteUser', $ctrl.userId);
         };
       },

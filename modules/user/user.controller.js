@@ -3,13 +3,24 @@
 
   angular
     .module('user')
-    .controller('UserController', ['$scope', '$uibModal', '$state', 'ngTableParams', 'UserService', UserController]);
+    .controller('UserController', ['$scope', '$uibModal', '$state', 'ngTableParams', 'ngTableEventsChannel', 'UserService', UserController]);
 
-  function UserController($scope, $uibModal, $state, ngTableParams, UserService) {
+  function UserController($scope, $uibModal, $state, ngTableParams, ngTableEventsChannel, UserService) {
     var vm = this;
 
     vm.users = [];
-    vm.selectedRowsLength = 0;
+
+    ngTableEventsChannel.onPagesChanged(function() {
+      vm.selectedRowsLength = 0;
+    });
+
+    $scope.$on('increaseSelectedRowsLength', function() {
+      vm.selectedRowsLength++;
+    });
+
+    $scope.$on('decreaseSelectedRowsLength', function() {
+      vm.selectedRowsLength--;
+    });
 
     $scope.$on('showUser', function(event, args) {
       $uibModal.open({
@@ -57,9 +68,6 @@
     }
     _onInit();
 
-    /*
-    * ngTable
-     */
     function _reloadUserTable() {
       vm.tableData.reload();
     }

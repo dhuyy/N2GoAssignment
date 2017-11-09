@@ -3,12 +3,15 @@
   <div class="table-menu">
     <div class="table-menu__selected">
       <span ng-if="vm.selectedRowsLength == 0">No users selected.</span>
-      <span ng-if="vm.selectedRowsLength != 0">
+      <span ng-if="vm.selectedRowsLength == 1">
+        {{ vm.selectedRowsLength }} user selected.
+      </span>
+      <span ng-if="vm.selectedRowsLength > 1">
         {{ vm.selectedRowsLength }} users selected.
       </span>
     </div>
     <div class="table-menu__buttons">
-      <button class="btn btn-default buttons--margin-right" ng-disabled="vm.selectedRowsLength == 0">
+      <button class="btn btn-default btn-delete-rows" ng-disabled="vm.selectedRowsLength == 0">
         <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Rows
       </button>
       <button class="btn btn-default" ng-disabled="vm.selectedRowsLength == 0">
@@ -20,6 +23,7 @@
     <table ng-table="vm.tableData" class="table table-hover table-users">
       <tbody>
         <tr class="hide">
+          <td data-title="''"></td>
           <td data-title="'First Name'"></td>
           <td data-title="'Last Name'"></td>
           <td data-title="'Email'"></td>
