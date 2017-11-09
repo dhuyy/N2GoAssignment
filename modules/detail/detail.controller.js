@@ -10,6 +10,12 @@
 
     vm.user = {};
 
+    vm.cancelEdit = cancelEdit;
+
+    function cancelEdit() {
+      $state.go('users');
+    }
+
     function _getUser() {
       vm.user = UserService.getUser($stateParams.id);
 

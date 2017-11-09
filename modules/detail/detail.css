@@ -5,7 +5,37 @@
 }
 
 .detail-wrapper {
-  width: 80vw;
-  margin: 30px auto 0;
-  outline: 1px solid black;
+  width: 60vw;
+  margin: 50px auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-info__picture {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.user-info__data {
+  flex: 3;
+}
+
+.data--cool-labels {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+}
+
+.user-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  margin-right: 10px;
 }
