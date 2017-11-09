@@ -7,14 +7,22 @@
              height="350px" alt="User-Profile">
       </div>
       <div class="user-info__data">
-        <form>
+        <form name="userForm" ng-submit="vm.editUser()" novalidate>
           <div class="form-group">
             <label for="firstName" class="data--cool-labels">First Name</label>
-            <input id="firstName" type="text" name="firstName" class="form-control">
+            <input id="firstName" type="text" name="firstName"
+                   ng-class="{ 'border-red': userForm.firstName.$invalid && !userForm.firstName.$pristine }"
+                   ng-model="vm.user.firstName" class="form-control" required>
+            <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine"
+               class="help-block">First name is required.</p>
           </div>
           <div class="form-group">
             <label for="lastName" class="data--cool-labels">Last Name</label>
-            <input id="lastName" type="text" name="lastName" class="form-control">
+            <input id="lastName" type="text" name="lastName"
+                   ng-class="{ 'border-red': userForm.lastName.$invalid && !userForm.lastName.$pristine }"
+                   ng-model="vm.user.lastName" class="form-control" required>
+            <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine"
+               class="help-block">Last name is required.</p>
           </div>
           <div class="form-group">
             <label for="email" class="data--cool-labels">Email</label>
@@ -31,16 +39,33 @@
             <input id="country" type="text" name="country" class="form-control"
                    value="{{ vm.user.country }}" disabled>
           </div>
+          <div class="user-form-buttons">
+            <button class="btn btn-success btn-save" type="submit"
+                    ng-disabled="!userForm.$dirty || !userForm.$valid">
+              <i class="fa fa-check" aria-hidden="true"></i> Save
+            </button>
+            <button class="btn btn-danger" type="button"
+                    ng-click="vm.cancelEdit(userForm.firstName.$dirty || userForm.lastName.$dirty)">
+              <i class="fa fa-close" aria-hidden="true"></i> Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
-    <div class="user-form-buttons">
-      <button class="btn btn-success btn-save">
-        <i class="fa fa-check" aria-hidden="true"></i> Save
+  </div>
+  <script type="text/ng-template" id="confirmCancelModal">
+    <div class="modal-body" id="modal-body">
+      <span>
+        Are you sure you want to discard changes?
+      </span>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="$ctrl.confirm()">
+        Confirm
       </button>
-      <button class="btn btn-danger" ng-click="vm.cancelEdit()">
-        <i class="fa fa-close" aria-hidden="true"></i> Cancel
+      <button class="btn btn-danger" ng-click="$ctrl.cancel()">
+        Cancel
       </button>
     </div>
-  </div>
+  </script>
 </div>

@@ -12,6 +12,7 @@
       fetchUsers: fetchUsers,
       getUsers: getUsers,
       getUser: getUser,
+      editUser: editUser,
       deleteUser: deleteUser
     };
     return userService;
@@ -24,6 +25,17 @@
       return _users.filter(function(user) {
         return user.id == userId;
       })[0];
+    }
+
+    function editUser(userParam) {
+      _users = _users.filter(function(user) {
+        if (user.id == userParam.id) {
+          user.firstName = userParam.firstName;
+          user.lastName = userParam.lastName;
+        }
+
+        return user;
+      });
     }
 
     function deleteUser(userId) {

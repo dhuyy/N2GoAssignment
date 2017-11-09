@@ -19,3 +19,13 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.border-red {
+  border-color: red;
+}
+
+.help-block {
+  margin-top: 2px;
+  font-size: 10px;
+  color: red;
+}
