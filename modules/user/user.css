@@ -39,3 +39,7 @@
 .table-users th {
   text-align: left;
 }
+
+.table-users tr {
+  cursor: pointer;
+}

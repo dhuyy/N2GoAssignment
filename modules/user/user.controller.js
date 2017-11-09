@@ -10,9 +10,11 @@
 
     vm.users = [];
 
-    ngTableEventsChannel.onPagesChanged(function() {
-      vm.selectedRowsLength = 0;
-    });
+    vm.deleteMultipleRows = deleteMultipleRows;
+
+    function deleteMultipleRows() {
+      $scope.$broadcast('deleteSelectedRows');
+    }
 
     $scope.$on('increaseSelectedRowsLength', function() {
       vm.selectedRowsLength++;
@@ -55,7 +57,7 @@
       _reloadUserTable();
     });
 
-    function _onInit() {
+    function _fetchUsers() {
       UserService.getUsers()
         .then(function(response) {
           vm.users = response;
@@ -65,6 +67,17 @@
         .catch(function() {
           console.error('Unable to load users.')
         });
+    }
+
+    function _registerOnPagesChangedEvent() {
+      ngTableEventsChannel.onPagesChanged(function() {
+        vm.selectedRowsLength = 0;
+      });
+    }
+
+    function _onInit() {
+      _fetchUsers();
+      _registerOnPagesChangedEvent();
     }
     _onInit();
 

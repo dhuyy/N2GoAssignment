@@ -32,6 +32,13 @@
             $scope.$emit('decreaseSelectedRowsLength');
         };
 
+        $scope.$on('deleteSelectedRows', function() {
+          if ($ctrl.checked) {
+            $scope.$emit('decreaseSelectedRowsLength');
+            $scope.$emit('deleteUser', $ctrl.userId);
+          }
+        });
+
         $ctrl.showUser = function() {
           $scope.$emit('showUser', {
             firstName: $ctrl.firstName,

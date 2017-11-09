@@ -11,7 +11,9 @@
       </span>
     </div>
     <div class="table-menu__buttons">
-      <button class="btn btn-default btn-delete-rows" ng-disabled="vm.selectedRowsLength == 0">
+      <button class="btn btn-default btn-delete-rows"
+              ng-click="vm.deleteMultipleRows()"
+              ng-disabled="vm.selectedRowsLength == 0">
         <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Rows
       </button>
       <button class="btn btn-default" ng-disabled="vm.selectedRowsLength == 0">
