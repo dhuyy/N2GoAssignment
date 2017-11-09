@@ -59,10 +59,7 @@
         };
       },
       controllerAs: '$ctrl',
-      templateUrl: 'common/userRowDirective/userRow.html',
-      link: function(scope, el) {
-
-      }
+      templateUrl: 'common/userRowDirective/userRow.html'
     }
   }
 })();

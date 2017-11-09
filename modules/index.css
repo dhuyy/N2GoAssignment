@@ -5,6 +5,12 @@ body {
   background-color: #FAFAFA;
 }
 
+.title {
+  font-size: 2.5em;
+  text-align: center;
+  font-weight: 100;
+}
+
 .hide {
   display: none;
 }

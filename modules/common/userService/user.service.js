@@ -3,41 +3,52 @@
 
   angular
     .module('common')
-    .factory('UserService', ['$http', '$q', 'SERVER', UserService]);
+    .factory('UserService', ['$http', 'SERVER', UserService]);
 
-  function UserService($http, $q, SERVER) {
+  function UserService($http, SERVER) {
     var _users = [];
-    var deferred = $q.defer();
 
     var userService = {
+      fetchUsers: fetchUsers,
       getUsers: getUsers,
-      getUser: getUser
+      getUser: getUser,
+      deleteUser: deleteUser
     };
     return userService;
 
     function getUsers() {
-      if (_users.length !== 0) {
-        deferred.resolve(_users);
+      return _users;
+    }
 
-        return deferred.promise;
+    function getUser(userId) {
+      return _users.filter(function(user) {
+        return user.id == userId;
+      })[0];
+    }
+
+    function deleteUser(userId) {
+      _users = _users.filter(function(user) {
+        return user.id != userId;
+      });
+    }
+
+    function fetchUsers(callback) {
+      if (_users.length !== 0) {
+        if (callback)
+          callback();
+
+        return;
       }
 
-      return _fetchUsers();
-    }
-
-    function getUser(id) {
-
-    }
-
-    function _fetchUsers() {
-      return $http.get(SERVER.ENDPOINTS.GET_USERS)
+      $http.get(SERVER.ENDPOINTS.GET_USERS)
         .then(function(response) {
           _users = response.data;
 
-          return _users;
+          if (callback)
+            callback();
         })
-        .catch(function(error) {
-          console.error(error)
+        .catch(function() {
+          console.error('Unable to load users.')
         });
     }
   }

@@ -1,0 +1,11 @@
+.detail-container {
+  width: 100%;
+  height: calc(100vh - 40px);
+  padding: 20px 0;
+}
+
+.detail-wrapper {
+  width: 80vw;
+  margin: 30px auto 0;
+  outline: 1px solid black;
+}

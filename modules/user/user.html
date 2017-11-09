@@ -51,9 +51,9 @@
   <script type="text/ng-template" id="showUserModal">
     <div class="modal-body" id="modal-body">
       <h2>
-        {{ $ctrl.firstName }}
-        {{ $ctrl.lastName }} is
-        {{ $ctrl.dateOfBirth | ageFilter }} years old.
+        {{ $ctrl.user.firstName }}
+        {{ $ctrl.user.lastName }} is
+        {{ $ctrl.user.dateOfBirth | ageFilter }} years old.
       </h2>
     </div>
     <div class="modal-footer">
